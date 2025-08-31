@@ -63,11 +63,11 @@ export function UserBehaviorProvider({ children }: { children: React.ReactNode }
         
         // Adaptive responses to fast scrolling
         if (avgSpeed > 2) {
-          updateSettings({
-            focusMode: 'line',
-            enableFocusWindow: true,
-            fontSize: Math.min(20, settings.fontSize + 1)
-          });
+          setBehavior(prev => ({
+            ...prev,
+            needsAssistance: true,
+            focusLevel: 'low'
+          }));
         }
       }
       
@@ -129,10 +129,17 @@ export function UserBehaviorProvider({ children }: { children: React.ReactNode }
       
       // Increase font size and enable focus aids
       updateSettings({
-        fontSize: 18,
+        fontSize: Math.min(24, settings.fontSize + 2),
         contrast: 'high',
-        focusMode: 'paragraph'
+        focusMode: 'paragraph',
+        enableFocusWindow: true
       });
+    } else if (behavior.idleTime < 1000) {
+      setBehavior(prev => ({
+        ...prev,
+        needsAssistance: false,
+        focusLevel: 'high'
+      }));
     }
   }, [behavior.idleTime, isTracking, updateSettings]);
 

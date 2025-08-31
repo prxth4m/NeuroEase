@@ -46,11 +46,11 @@ export default function FocusWindow({ targetElement, currentParagraph, currentLi
   return (
     <div className="fixed inset-0 pointer-events-none z-10">
       {/* Overlay that dims everything except the focus area */}
-      <div className="absolute inset-0 bg-black/20" />
+      <div className="absolute inset-0 bg-black/30 backdrop-blur-sm" />
       
       {/* Focus window */}
       <div
-        className="absolute left-0 right-0 bg-transparent border-2 border-blue-400 rounded-lg transition-all duration-500 ease-out shadow-lg"
+        className="absolute left-0 right-0 bg-white/5 border-2 border-blue-400 rounded-lg transition-all duration-500 ease-out shadow-2xl backdrop-blur-sm"
         style={{
           top: `${windowPosition.top}px`,
           height: `${windowPosition.height}px`,
@@ -58,7 +58,7 @@ export default function FocusWindow({ targetElement, currentParagraph, currentLi
           marginRight: '5%',
         }}
       >
-        <div className="absolute -top-8 left-0 text-sm text-blue-600 font-medium">
+        <div className="absolute -top-8 left-0 text-sm text-blue-400 font-medium bg-black/50 px-2 py-1 rounded">
           Focus Area
         </div>
       </div>

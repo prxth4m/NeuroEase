@@ -18,7 +18,8 @@ import {
   ChevronDown,
   ChevronUp,
   Play,
-  Pause
+  Pause,
+  Zap
 } from 'lucide-react';
 import { useAccessibility } from '@/contexts/AccessibilityContext';
 import { useUserBehavior } from '@/contexts/UserBehaviorContext';
@@ -41,6 +42,12 @@ export default function AccessibilityControls() {
               <Badge variant={behavior.focusLevel === 'high' ? 'default' : 'secondary'}>
                 {behavior.focusLevel}
               </Badge>
+              {behavior.needsAssistance && (
+                <Badge variant="destructive" className="text-xs">
+                  <Zap className="w-3 h-3 mr-1" />
+                  Assist
+                </Badge>
+              )}
               <Button
                 variant="ghost"
                 size="sm"

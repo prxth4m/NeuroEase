@@ -46,13 +46,17 @@ export default function TextRenderer({
 
   const renderBionicText = (text: string) => {
     return text.split(' ').map((word, index) => {
+      if (word.length <= 1) return <span key={index}>{word} </span>;
+      
       const midpoint = Math.ceil(word.length / 2);
       const bold = word.slice(0, midpoint);
       const normal = word.slice(midpoint);
       
       return (
         <span key={index}>
-          <strong>{bold}</strong>{normal}{' '}
+          <strong className="font-bold">{bold}</strong>
+          <span className="font-normal">{normal}</span>
+          {' '}
         </span>
       );
     });

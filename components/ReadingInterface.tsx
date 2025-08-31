@@ -5,6 +5,9 @@ import { useAccessibility } from '@/contexts/AccessibilityContext';
 import { useUserBehavior } from '@/contexts/UserBehaviorContext';
 import TextRenderer from './TextRenderer';
 import FocusWindow from './FocusWindow';
+import BehaviorIndicator from './BehaviorIndicator';
+import ProgressTracker from './ProgressTracker';
+import ReadingModeSelector from './ReadingModeSelector';
 import { sampleText } from '@/lib/sampleText';
 
 export default function ReadingInterface() {
@@ -91,15 +94,12 @@ export default function ReadingInterface() {
         `}
         style={containerStyles}
       >
+        <ReadingModeSelector />
+        
         <div className="mb-8">
           <h1 className="text-4xl font-bold mb-4 transition-all duration-300">
             Adaptive Reading Experience
           </h1>
-          <div className="flex gap-4 text-sm text-muted-foreground">
-            <span>Focus Level: {behavior.focusLevel}</span>
-            <span>Scroll Speed: {behavior.scrollSpeed.toFixed(2)}</span>
-            <span>Idle: {behavior.idleTime}ms</span>
-          </div>
         </div>
 
         <div className="space-y-8">
@@ -121,6 +121,9 @@ export default function ReadingInterface() {
         </div>
       </div>
 
+      <BehaviorIndicator />
+      <ProgressTracker />
+      
       {settings.enableFocusWindow && (
         <FocusWindow 
           targetElement={containerRef.current}
